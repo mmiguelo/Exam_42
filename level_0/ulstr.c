@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-int	main(int ac, char **av)
+int	main(int ac, char **av) - ulstr
 {
 	int i;
 	if (ac == 2)

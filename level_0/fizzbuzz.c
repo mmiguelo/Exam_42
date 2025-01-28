@@ -12,7 +12,7 @@ void	ft_putnbr(int n)
 		write(1, &base[n % 10], 1);
 }
 
-int main(void)
+int main(void) - fizzbuzz
 {
 	int i = 1;
 	while(i <= 100)

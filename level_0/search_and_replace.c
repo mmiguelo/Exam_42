@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-int	main(int ac, char **av)
+int	main(int ac, char **av) - search_and_replace
 {
 	int i;
 	if (ac == 4 && !av[2][1] && !av[3][1])
