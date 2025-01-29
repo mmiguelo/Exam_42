@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:22:28 by mmiguelo          #+#    #+#             */
-/*   Updated: 2024/12/04 17:31:41 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:12:44 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		int i = 0;
-		
 		while(av[1][i] == 9 || av[1][i] == 32)
 			i++;
 		while(av[1][i])
