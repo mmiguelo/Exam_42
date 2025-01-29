@@ -1,4 +1,4 @@
-int	main(int ac, char **av) - hidenp
+int	main(int ac, char **av)
 {
 	if (ac == 3)
 	{
