@@ -3,32 +3,24 @@
 
 int ft_atoi(char *str)
 {
-	int i = 0;
-	int result = 0;
-
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + str[i] - '0';
-		i++;
-	}
-	return (result);
+	int r = 0;
+	while(*str)
+		r = r * 10 + (*str++ - '0');
+	return (r);
 }
 int	ft_isprime(int nbr)
 {
 	int i = 2;
-
 	if (nbr <= 1)
 		return (0);
 	while (i * i <= nbr)
 	{
-		if (nbr % i != 0)
-			i++;
-		else
+		if (nbr % i == 0)
 			return (0);
+		i++;
 	}
 	return (1);
 }
-
 void	ft_putnbr(int nbr)
 {
 	char	c;
