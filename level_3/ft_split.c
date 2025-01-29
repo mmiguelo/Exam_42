@@ -24,9 +24,7 @@ char	*ft_str_cpy(char *new, char *old, int size)
 {
 	new = malloc(sizeof(char) * (size + 1));
 	if (new == NULL)
-	{
 		return (NULL);
-	}
 	int i = 0;
 	while (i < size)
 	{
