@@ -2,13 +2,12 @@
 
 int	main(int ac, char **av)
 {
-	int i;
+	int i = 0;
 	int j;
 	unsigned char array[256];
 
 	if (ac == 3)
 	{
-		i = 0;
 		while (av[1][i])
 		{
 			if (!array[(unsigned char)av[1][i]])
