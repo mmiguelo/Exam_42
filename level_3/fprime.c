@@ -5,11 +5,9 @@ int main(int ac, char **av)
 {
 	if (ac == 2)
 	{
-		int i;
-		int nb;
+		int i = 1;
+		int nb = atoi(av[1]);
 
-		nb = atoi(av[1]);
-		i = 1;
 		if (nb == 1)
 			printf("1");
 		while (nb >= i++)
