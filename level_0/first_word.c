@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-int main(int ac, char **av) - first_word
+int main(int ac, char **av)
 {
 	int	i;
 

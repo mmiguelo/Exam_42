@@ -1,18 +1,14 @@
 #include <unistd.h>
 
-void	ft_putnbr(int n)
+void	ft_putnbr(int i)
 {
 	char *base = "0123456789";
-	if (n > 9)
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
-	else
-		write(1, &base[n % 10], 1);
+	if (i > 9)
+		ft_putnbr(i / 10);
+	write(1, &base[i % 10], 1);
 }
 
-int main(void) - fizzbuzz
+int main(void)
 {
 	int i = 1;
 	while(i <= 100)
