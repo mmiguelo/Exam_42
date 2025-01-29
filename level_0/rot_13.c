@@ -2,10 +2,9 @@
 
 int main(int ac, char **av) - rot_13
 {
-	int i;
+	int i = 0;
 	if (ac == 2)
 	{
-		i = 0;
 		while (av[1][i])
 		{
 			if ((av[1][i] >= 'a' && av[1][i] <= 'm')\
