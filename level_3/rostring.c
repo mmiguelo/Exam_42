@@ -7,11 +7,9 @@ int main(int ac, char **av)
 	{
 		int begin;
 		int end;
-		int i;
-		int flag;
+		int i = 0;
+		int flag = 0;
 
-		i = 0;
-		flag = 0;
 		while(av[1][i] && (av[1][i] == ' ' || av[1][i] == '\t'))
 			i++;
 		begin = i;
