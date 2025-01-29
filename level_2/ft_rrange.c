@@ -3,14 +3,12 @@
 
 int     *ft_rrange(int start, int end)
 {
-	int i;
-	int n;
+	int i = 0;
+	int n = end - start + 1;
 	int *range;
 
-	i = 0;
 	if (start > end)
 		return (ft_rrange(end, start));
-	n = end - start + 1;
 	range = malloc(sizeof(int) * n);
 	if (range)
 	{
