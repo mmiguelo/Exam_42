@@ -3,13 +3,10 @@
 
 int     *ft_range(int start, int end)
 {
-	int i;
-	int *range;
-	int n;
-
-	i = 0;
-	n = abs((end - start)) + 1;
-	range = malloc(sizeof(int) * n);
+	int i = 0;
+	int n = abs((end - start)) + 1;
+	int *range = malloc(sizeof(int) * n);
+	
 	if (range)
 	{
 		if (start < end)
