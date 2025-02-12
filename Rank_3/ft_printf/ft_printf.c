@@ -63,8 +63,8 @@ int	ft_printf(const char *input, ...)
 /*
 int		main()
 {
-	printf("%s\n", "toto");
-	ft_printf("%s\n", "toto");
+	printf("%s\n", "this is a string");
+	ft_printf("%s\n", "this is a string");
 
 	printf("Magic %s is %d\n", "number", 42);
 	ft_printf("Magic %s is %d\n", "number", 42);
