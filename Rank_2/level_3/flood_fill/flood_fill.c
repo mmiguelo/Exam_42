@@ -1,8 +1,4 @@
-typedef struct  s_point
-{
-  int           x;
-  int           y;
-}               t_point;
+#include "flood_fill.h"
 
 void  ft_flood_fill(char **tab, t_point size, char target, int row, int column)
 {
