@@ -1,5 +1,14 @@
+Assignment name  : missing_number
+Expected files   : missing_number.c
+Allowed functions:
+--------------------------------------------------------------------------------
+
 Given an array nums containing n distinct integer numbers in the range [0, n], 
 return the only number that is missing from the array.
+
+Your function must be declared as follows:
+
+int missing_number(int* nums);
 
 Example:
 
