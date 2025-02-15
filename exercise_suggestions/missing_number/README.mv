@@ -7,7 +7,7 @@ Create a function that takes an array of unsigned int as parameter, and returns 
 
 Your function must be declared as follows:
 
-int missing_number(int* nums);
+unsigned int  missing_number(int* nums);
 
 Example:
 
