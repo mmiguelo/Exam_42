@@ -3,7 +3,7 @@ Expected files   : missing_number.c
 Allowed functions:
 --------------------------------------------------------------------------------
 
-Create a function that takes an array of unsigned int as parameter, and returns its missing number.
+Create a function that takes an array of unsigned int as parameter, and returns its only missing number.
 
 Your function must be declared as follows:
 
