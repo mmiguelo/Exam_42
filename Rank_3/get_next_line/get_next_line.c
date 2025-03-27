@@ -1,89 +1,58 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "get_next_line.h"
-//#include <stdio.h>
-//#include <fcntl.h>
+//#include <stdio.h> this are optional and used in main
+//#include <fcntl.h> this are optional and used in main
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strdup(const char *str)
 {
-	while (*s)
-	{
-		if (*s == (char)c)
-			return (s);
-		s++;
-	}
-	return (NULL);
-}
+	char	*dest;
+	int	i = 0;
 
-size_t	ft_strlen(const char *str)
-{
-	size_t		i = 0;
-
+	if (!str)
+		return (NULL);
 	while (str[i])
-		i++;
-	return (i);
-}
-
-void	ft_strcpy(char *dest, const char *src)
-{
-	while (*src)
-		*dest++ = *src++;
-	*dest = '\0';
-}
-
-char	*ft_strdup(const char *src)
-{
-	size_t	len = ft_strlen(src);
-	char	*dest = malloc(len + 1);
-
+        	i++;
+    	dest = malloc(i + 1);
 	if (!dest)
 		return (NULL);
-	ft_strcpy(dest, src);
+	i = 0;
+	while (str[i])
+	{
+		dest[i] = str[i];
+		i++;
+	}
+	dest[i] = '\0';
 	return (dest);
-}
-
-char	*ft_strjoin(char *s1, const char *s2)
-{
-	size_t	len_s1 = ft_strlen(s1);
-	size_t	len_s2 = ft_strlen(s2);
-	char	*join = malloc(len_s1 + len_s2 + 1);
-
-	if (!s1 || !s2 || !join)
-		return (NULL);
-	ft_strcpy(join, s1);
-	ft_strcpy(join + len_s1, s2);
-	free(s1);
-	return (join);
 }
 
 char	*get_next_line(int fd)
 {
-	static char		buff[BUFFER_SIZE + 1];
-	char			*line;
-	char			*newline;
-	int				countread;
-	int				tocopy;
+	static char buffer[BUFFER_SIZE];
+    	char        line[70000];
+    	static int  buffer_pos;
+    	static int  buffer_read;
+    	int         i = 0;
 
-	line = ft_strdup(buff);
-	while (!(newline = ft_strchr(line, '\n')) && (countread = read(fd, buff, BUFFER_SIZE)) > 0)
-	{
-		buff[countread] = '\0';
-		line = ft_strjoin(line, buff);
-	}
-	if (ft_strlen(line) == 0)
-		return (free(line), NULL);
-	if (newline)
-	{
-		tocopy = newline - line + 1;
-		ft_strcpy(buff, newline + 1);
-	}
-	else
-	{
-		tocopy = ft_strlen(line);
-		buff[0] = '\0';
-	}
-	line[tocopy] = '\0';
-	return (line);
+    	if (fd < 0 || BUFFER_SIZE <= 0)
+        	return (NULL);
+    	while (1)
+    	{
+        	if (buffer_pos >= buffer_read)
+        	{
+            		buffer_read = read(fd, buffer, BUFFER_SIZE);
+            		buffer_pos = 0;
+            		if (buffer_read <= 0)
+                		break;
+        	}
+        	line[i++] = buffer[buffer_pos++];
+        	if (line[i - 1] == '\n')
+            		break;
+    	}
+    	line[i] = '\0';
+    	if (i == 0)
+        	return (NULL);
+    return (ft_strdup(line));
 }
 
 /*
