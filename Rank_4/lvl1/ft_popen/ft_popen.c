@@ -5,8 +5,8 @@
 
 int ft_popen(const char *file, char *const argv[], char type)
 {
-	int		fd[2];
-	pid_t	pid;
+	int	fd[2];
+	int	pid;
 
 	if (!file || !(*argv) || (type != 'r' && type != 'w'))
 		return -1;
