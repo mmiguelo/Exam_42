@@ -17,7 +17,7 @@ node *n(**s);
 
 node    *new_node(node n)
 {
-    node *ret = calloc(1, sizeof(n));
+    node *ret = calloc(1, sizeof(node));
     if (!ret)
         return (NULL);
     *ret = n;
@@ -46,7 +46,7 @@ void    unexpected(char c)
 
 int accept(char **s, char c)
 {
-    if (**s)
+    if (**s == c)
     {
         (*s)++;
         return (1);
