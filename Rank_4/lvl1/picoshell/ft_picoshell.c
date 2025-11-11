@@ -1,47 +1,42 @@
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
 
 int    picoshell(char **cmds[])
 {
-	int fd[2];
-	int pid;
-	int prev_fd = -1;
-	int i = 0;
+	int num = 0;
+	while(cmds[num])
+		num++;
 
-	while (cmds[i])
+	pid_t	pid[num];
+	int fd[2];
+	int prev_fd = -1;
+
+	for (int i = 0; i < num; i++)
 	{
-		if (cmds[i + 1] && pipe(fd) == -1)
-			return (prev_fd != -1 && close(prev_fd), 1);
-		if ((pid = fork()) == -1)
-		{
-			close(fd[0]);
-			close(fd[1]);
-			if(prev_fd != -1)
-				close (prev_fd);
-			return (1);
-		}
-		if (pid == 0)
+		if ((i < num -1) && (pipe(fd) == -1))
+			return 1;
+		if ((pid[i] = fork()) < 0)
+			return 1;
+		if (pid[i] == 0)
 		{
 			if (prev_fd != -1)
-				dup2(prev_fd, STDIN_FILENO), close(prev_fd);
-			if(cmds[i + 1])
-				close(fd[0]), dup2(fd[1], STDOUT_FILENO), close(fd[1]);
+				dup2(prev_fd, 0), close(prev_fd);
+			if(i < num -1)
+				dup2(fd[1], 1), close(fd[0]), close(fd[1]);
 			execvp(cmds[i][0], cmds[i]);
 			exit(1);
 		}
 		if (prev_fd != -1)
 			close(prev_fd);
-		if (cmds[i+1])
-			(close(fd[1]), prev_fd = fd[0]);
-		i++;
+		if (i < num -1)
+			close(fd[1]), prev_fd = fd[0];
 	}
-	while(wait(NULL) > 0);
-	if (prev_fd != -1)
-		close(prev_fd);
+	for (int i = 0; i < num; i++)
+		wait(NULL);
 	return (0);
 }
 
