@@ -1,0 +1,15 @@
+[0;34m🔍 Running COMPREHENSIVE TESTING for bigint[0m
+==========================================
+
+[0;34m📦 Compiling reference solution...[0m
+bigint.cpp: In constructor ‘bigint::bigint(long long unsigned int)’:
+bigint.cpp:7:52: error: ‘to_string’ is not a member of ‘std’
+    7 | bigint::bigint(unsigned long long nbrs): _nbr(std::to_string(nbrs)) {}
+      |                                                    ^~~~~~~~~
+bigint.cpp:7:52: note: ‘std::to_string’ is only available from C++17 onwards
+bigint.cpp: In function ‘int toInt(const bigint&)’:
+bigint.cpp:174:24: error: ‘stoi’ is not a member of ‘std’
+  174 |         int res = std::stoi(src.getNbrs());
+      |                        ^~~~
+bigint.cpp:174:24: note: ‘std::stoi’ is only available from C++11 onwards
+[0;31m❌ Reference compilation failed![0m

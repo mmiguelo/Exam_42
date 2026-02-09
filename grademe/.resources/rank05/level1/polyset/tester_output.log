@@ -1,0 +1,17 @@
+[0;34m🔍 Running COMPREHENSIVE TESTING for polyset[0m
+==========================================
+
+[0;34m📦 Compiling reference solution...[0m
+cc1plus: fatal error: array_bag.cpp: No such file or directory
+compilation terminated.
+cc1plus: fatal error: main.cpp: No such file or directory
+compilation terminated.
+cc1plus: fatal error: searchable_array_bag.cpp: No such file or directory
+compilation terminated.
+cc1plus: fatal error: searchable_tree_bag.cpp: No such file or directory
+compilation terminated.
+cc1plus: fatal error: set.cpp: No such file or directory
+compilation terminated.
+cc1plus: fatal error: tree_bag.cpp: No such file or directory
+compilation terminated.
+[0;31m❌ Reference compilation failed![0m
