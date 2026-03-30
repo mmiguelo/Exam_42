@@ -51,7 +51,7 @@ void solve_bsq(BSQ *b) {
 }
 
 int parse(BSQ *b, FILE *f) {
-	int ret = fscanf(f, "%d %c %c %c\n", &b->lines, &b->empt, &b->obs, &b->full);
+	int ret = fscanf(f, "%d%c%c%c\n", &b->lines, &b->empt, &b->obs, &b->full);
 	if (ret != 4 || b->lines <= 0)
 		return 0;
 	if (b->empt == b->obs || b->empt == b->full || b->obs == b->full)
@@ -87,8 +87,10 @@ void start(FILE *f) {
 	if (!parse(&b, f))
 		return (void)fprintf(stderr, "Error: invalid map\n");
 	solve_bsq(&b);
-	for (int i = 0; i < b.lines; i++)
-		puts(b.map[i]);
+	for (int i = 0; i < b.lines; i++) {
+		fputs(b.map[i], stdout);
+		fputs("\n", stdout);
+	}
 	free_map(&b);
 }
 
