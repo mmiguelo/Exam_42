@@ -31,7 +31,7 @@ void broadcast(int senderFd, char* msg) {
 }
 
 int main(int argc, char **argv) {
-    if (argc != 2) fatal("Usage: ./server <port>\n");
+    if (argc != 2) fatal("Wrong number of arguments\n");
 
     int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (serverSocket < 0) fatal("Fatal error\n");
@@ -59,18 +59,17 @@ int main(int argc, char **argv) {
 
             if (fd == serverSocket) {
                 int clientSocket = accept(serverSocket, (struct sockaddr *)&servaddr, &addr_len);
-                
                 if (clientSocket < 0) continue;
 
                 max_fd = (clientSocket > max_fd) ? clientSocket : max_fd;
                 clients[clientSocket].id = nextClientId++;
-                memset(clients[clientSocket].msg, 0, sizeof(clients[clientSocket].msg));
+                clients[clientSocket].msg[0] = '\0';
                 FD_SET(clientSocket, &activefds);
                 sprintf(writeBuffer, "server: client %d just arrived\n", clients[clientSocket].id);
                 broadcast(clientSocket, writeBuffer);
             } 
             else {
-                int n = recv(fd, readBuffer, 100000, 0);
+                int n = recv(fd, readBuffer, sizeof(readBuffer), 0);
 
                 if (n <= 0) { // client disconnected
                     sprintf(writeBuffer, "server: client %d just left\n", clients[fd].id);
@@ -79,17 +78,19 @@ int main(int argc, char **argv) {
                     close(fd);
                 } 
                 
-                else { // received data
-                    for (int i = 0, j = strlen(clients[fd].msg); i < n; i++, j++) {
-                        clients[fd].msg[j] = readBuffer[i];
-                        if (clients[fd].msg[j] == '\n') {
-                            clients[fd].msg[j] = '\0';
-                            sprintf(writeBuffer, "client %d: %s\n", clients[fd].id, clients[fd].msg);
-                            broadcast(fd, writeBuffer);
-                            memset(clients[fd].msg, 0, sizeof(clients[fd].msg));
-                        }
-                    }
-                }
+                else {
+					int j = strlen(clients[fd].msg);
+					for (int i = 0; i < n; i++) {
+						clients[fd].msg[j++] = readBuffer[i];
+						if (clients[fd].msg[j - 1] == '\n') {
+							clients[fd].msg[j - 1] = '\0';
+							sprintf(writeBuffer, "client %d: %s\n", clients[fd].id, clients[fd].msg);
+							broadcast(fd, writeBuffer);
+							j = 0;
+							clients[fd].msg[0] = '\0';
+						}
+					}
+				}
             }
         }
     }
