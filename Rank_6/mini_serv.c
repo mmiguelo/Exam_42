@@ -21,7 +21,7 @@ char writeBuffer[12000], readBuffer[12000];
 void clean() {
 	for (int fd = 0; fd <= max_fd; fd++) {
 		if (FD_ISSET(fd, &allfds)) {
-			FD_CLR(fd);
+			FD_CLR(fd, &allfds);
 			close(fd);
 		}
 	}
