@@ -28,6 +28,7 @@ void clean() {
 }
 
 void fatal(char *msg) {
+	clean();
 	write(2, msg, strlen(msg));
 	exit(1);
 }
